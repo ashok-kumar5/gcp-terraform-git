@@ -67,5 +67,12 @@ stage('Terraform Apply') {
                 """
             }
         }
+        stage('Terraform Destroy') {
+    steps {
+        dir('terraform') {
+            bat '"%TERRAFORM%" destroy -auto-approve'
+        }
+    }
+}
     }
 }
