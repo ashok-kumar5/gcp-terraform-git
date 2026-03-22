@@ -19,14 +19,27 @@ stage('Terraform Apply') {
     }
 }
         stage('Fetch Terraform Outputs') {
-            steps {
-                script {
-                    env.DEV_IP  = bat(script: "terraform output -raw dev_ip", returnStdout: true).trim()
-                    env.PROD_IP = bat(script: "terraform output -raw prod_ip", returnStdout: true).trim()
-                    env.USER    = bat(script: "terraform output -raw username", returnStdout: true).trim()
-                }
+    steps {
+        dir('terraform') {
+            script {
+                env.DEV_IP = bat(
+                    script: '"C:\\Program Files\\Terraform\\terraform.exe" output -raw dev_ip',
+                    returnStdout: true
+                ).trim()
+
+                env.PROD_IP = bat(
+                    script: '"C:\\Program Files\\Terraform\\terraform.exe" output -raw prod_ip',
+                    returnStdout: true
+                ).trim()
+
+                env.USERNAME = bat(
+                    script: '"C:\\Program Files\\Terraform\\terraform.exe" output -raw username',
+                    returnStdout: true
+                ).trim()
             }
         }
+    }
+}
 
         stage('Deploy to DEV') {
             steps {
