@@ -5,13 +5,13 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                bat 'C:/Program Files/Terraform/terraform.exe init'
+                bat 'C:\\Program Files\\Terraform\\terraform.exe init'
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                bat 'C:/Program Files/Terraform/terraform.exe apply -auto-approve'
+                bat 'C:\\Program Files\\Terraform\\terraform.exe apply -auto-approve'
             }
         }
 
