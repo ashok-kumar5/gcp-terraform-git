@@ -4,16 +4,16 @@ pipeline {
     stages {
 
         stage('Terraform Init') {
-            steps {
-                bat 'C:\\Program Files\\Terraform\\terraform.exe init'
-            }
-        }
+    steps {
+        bat '"C:\\Program Files\\Terraform\\terraform.exe" init'
+    }
+}
 
-        stage('Terraform Apply') {
-            steps {
-                bat 'C:\\Program Files\\Terraform\\terraform.exe apply -auto-approve'
-            }
-        }
+stage('Terraform Apply') {
+    steps {
+        bat '"C:\\Program Files\\Terraform\\terraform.exe" apply -auto-approve'
+    }
+}
 
         stage('Fetch Terraform Outputs') {
             steps {
