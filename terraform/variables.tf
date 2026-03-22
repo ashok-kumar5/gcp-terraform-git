@@ -1,13 +1,13 @@
-variables "my-project-1-486406" {}
+variable "my-project-1-486406" {}
 
-variables "region" {
+variable "region" {
     default = "us-central1"
 }
 
-variables "zone"{
+variable "zone"{
     default = "us-central1-a"
 }
 
-variables "machine_type"{
+variable "machine_type"{
     default = "e2-medium"
 }
