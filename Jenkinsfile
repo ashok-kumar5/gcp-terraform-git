@@ -5,16 +5,19 @@ pipeline {
 
         stage('Terraform Init') {
     steps {
-        bat '"C:\\Program Files\\Terraform\\terraform.exe" init'
+        dir('terraform') {   // replace 'terraform' with your actual folder name
+            bat '"C:\\Program Files\\Terraform\\terraform.exe" init'
+        }
     }
 }
 
 stage('Terraform Apply') {
     steps {
-        bat '"C:\\Program Files\\Terraform\\terraform.exe" apply -auto-approve'
+        dir('terraform') {
+            bat '"C:\\Program Files\\Terraform\\terraform.exe" apply -auto-approve'
+        }
     }
 }
-
         stage('Fetch Terraform Outputs') {
             steps {
                 script {
