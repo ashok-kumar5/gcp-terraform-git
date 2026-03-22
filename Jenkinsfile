@@ -42,17 +42,18 @@ stage('Terraform Apply') {
 }
 
         stage('Deploy to DEV') {
-            steps {
-                bat """
-                echo Deploying to DEV %DEV_IP%
+    steps {
+        dir('terraform') {
+            bat """
+            echo Deploying to DEV %DEV_IP%
 
-                scp -o StrictHostKeyChecking=no app/index.html %USER%@%DEV_IP%:/tmp/index.html
+            scp -o StrictHostKeyChecking=no app/index.html %USERNAME%@%DEV_IP%:/tmp/index.html
 
-                ssh -o StrictHostKeyChecking=no %USER%@%DEV_IP% ^
-                "sudo cp /tmp/index.html /var/www/html/index.html && sudo systemctl restart nginx"
-                """
-            }
+            ssh -o StrictHostKeyChecking=no %USERNAME%@%DEV_IP% "sudo cp /tmp/index.html /var/www/html/index.html && sudo systemctl restart apache2"
+            """
         }
+    }
+}
 
         stage('Deploy to PROD') {
             steps {
